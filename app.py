@@ -12,7 +12,7 @@ pro = ts.pro_api('79b02307d33ca733aeac643f8d1551a9794607ba8cc905f313815494')
 @app.route(f'/{url}/unusualChange', methods=['GET'])
 @cross_origin()
 def unusualChange():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     predit = aks.stock_changes_em(symbol=symbol)
     df = predit.to_json(orient='records', force_ascii=False)
     return df
@@ -56,7 +56,7 @@ def getTHConcept():
 @app.route(f'/{url}/getTHStocksByConceptName', methods=['GET'])
 @cross_origin()
 def getTHStocksByConceptName():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_concept_cons_ths(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
@@ -68,7 +68,7 @@ def getTHStocksByConceptName():
 @app.route(f'/{url}/getTHStocksByConceptCode', methods=['GET'])
 @cross_origin()
 def getTHStocksByConceptCode():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_cons_ths(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
@@ -90,7 +90,7 @@ def getTHIndustry():
 @app.route(f'/{url}/getTHIndustryByName', methods=['GET'])
 @cross_origin()
 def getTHIndustryByName():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_industry_cons_ths(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
@@ -101,8 +101,14 @@ def getTHIndustryByName():
 @app.route(f'/{url}/getTHStocksByIndustryCode', methods=['GET'])
 @cross_origin()
 def getTHStocksByIndustryCode():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_cons_ths(symbol = symbol)
+    stocks['code'] = stocks['代码']
+    stocks['name'] = stocks['名称']
+    stocks['name'] = stocks['名称']
+    stocks['flow_current'] = stocks['流通市值']
+    stocks['price'] = stocks['现价']
+    stocks['price_change'] = stocks['涨跌幅']
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
 
@@ -127,7 +133,7 @@ def getDCConcept():
 @app.route(f'/{url}/getDCStocksByConceptName', methods=['GET'])
 @cross_origin()
 def getDCStocksByConceptName():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_concept_cons_em(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
@@ -153,7 +159,7 @@ def getDCIndustry():
 @app.route(f'/{url}/getDCStocksByIndustryName', methods=['GET'])
 @cross_origin()
 def getDCStocksByIndustryName():
-    symbol = equest.args.to_dict().get('symbol')
+    symbol = request.args.to_dict().get('symbol')
     stocks = aks.stock_board_industry_cons_em(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
     return df
