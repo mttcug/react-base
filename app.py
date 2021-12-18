@@ -1,34 +1,132 @@
 from flask import Flask, request, url_for
 import tushare as ts
+import akshare as aks
 import json
 app = Flask(__name__)
 
 url = 'api'
-
 pro = ts.pro_api('79b02307d33ca733aeac643f8d1551a9794607ba8cc905f313815494')
 
 
-#同花顺行业列表
-#请求tushare接口
+# 东方财富网-数据中心-研究报告-盈利预测
+@app.route(f'/{url}/predictProfit', method=['GET'])
+def predictProfit():
+    predit = aks.stock_profit_forecast()
+    df = predit.to_json(orient='records', force_ascii=False)
+    return df
+
+
+#######################################################################################
+# 同花顺-板块-概念板块-概念
+# Concept
+@app.route(f'/{url}/getTHConcept', methods=['GET'])
+def getTHConcept():
+    thc = aks.stock_board_concept_name_ths()
+    thc['板块名称'] = thc['概念名称']
+    thc['板块代码'] = thc['代码'].str.slice(38, 44, 1)
+    data = thc[['板块代码', '板块名称', '成分股数量']]
+    df = data.to_json(orient='records', force_ascii=False)
+    return df
+
+# 同花顺-板块-概念板块-成份股数据
+# Concept 
+# Name
+@app.route(f'/{url}/getTHStocksByConceptName', methods=['GET'])
+def getTHStocksByConceptName():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_concept_cons_ths(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+
+# 同花顺-板块-概念板块-成份股数据
+# Concept
+# Code
+@app.route(f'/{url}/getTHStocksByConceptCode', methods=['GET'])
+def getTHStocksByConceptCode():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_cons_ths(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+# 同花顺-板块-行业板块-行业
+# Industry
 @app.route(f'/{url}/getTHIndustry', methods=['GET'])
 def getTHIndustry():
-    data = pro.ths_index()
-    df = data.to_json(orient='records', force_ascii=False)
-    return df
-
-#同花顺行业列表
-#请求tushare接口
-@app.route(f'/{url}/getSWIndustry', methods=['GET'])
-def getSWIndustry():
-    level = request.args.to_dict().get('level')
-    src = request.args.to_dict().get('src')
-    if (not src):
-        src = 'SW2021'
-    data = pro.index_classify(level = level, src = src)
+    thi = aks.stock_board_industry_name_ths()
+    thi['板块名称'] = thi.name
+    thi['板块代码'] = thi.code
+    data = thi[['板块代码', '板块名称']]
     df = data.to_json(orient='records', force_ascii=False)
     return df
 
 
+# 同花顺-板块-行业板块-成份股数据
+# Industry
+# Name
+@app.route(f'/{url}/getTHIndustry', methods=['GET'])
+def getTHIndustry():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_industry_cons_ths(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+# 同花顺-板块-行业板块-成份股数据
+# Industry
+# Code
+@app.route(f'/{url}/getTHStocksByIndustryCode', methods=['GET'])
+def getTHStocksByIndustryCode():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_cons_ths(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+###################################################################################################
+# 东方财富-沪深板块-概念板块
+# Concept
+@app.route(f'/{url}/getDCConcept', methods=['GET'])
+def getDCConcept():
+    dci = aks.stock_board_concept_name_em()
+    dci['成分股数量'] = dci['上涨家数'] + dci['下跌家数']
+    data = dci[['板块代码', '板块名称', '成分股数量']]
+    df = data.to_json(orient='records', force_ascii=False)
+    return df
+
+
+# 东方财富-沪深板块-概念板块-板块成份
+# Concept
+# Name
+@app.route(f'/{url}/getDCStocksByConceptName', methods=['GET'])
+def getDCStocksByConceptName():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_concept_cons_em(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+
+# 东方财富-沪深京板块-行业板块
+# Industry
+@app.route(f'/{url}/getDCIndustry', methods=['GET'])
+def getDCIndustry():
+    thi = aks.stock_board_industry_name_em()
+    thi['板块名称'] = thi['概念名称']
+    thi['板块代码'] = thi['代码'].str.slice(38, 44, 1)
+    data = thi[['板块代码', '板块名称', '成分股数量']]
+    df = data.to_json(orient='records', force_ascii=False)
+    return df
+
+# 东方财富-沪深板块-行业板块-板块成份
+# Industry
+# Name
+@app.route(f'/{url}/getDCStocksByConceptName', methods=['GET'])
+def getDCStocksByConceptName():
+    symbol = equest.args.to_dict().get('symbol')
+    stocks = aks.stock_board_industry_cons_em(symbol = symbol)
+    df = stocks.to_json(orient='records', force_ascii=False)
+    return df
+
+
+#############################################################################################
 #请求获取概念股
 @app.route(f'/{url}/getConcept', methods=['GET'])
 def getConcept():
