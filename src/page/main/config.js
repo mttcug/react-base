@@ -38,6 +38,21 @@ const contentModuleFunc = [
         navigateUrl: '/outline/concept'
     },
     {
+        name: '盈利预测',
+        icon: 'icon-profit-predict',
+        navigateUrl: '/outline/concept'
+    },
+    {
+        name: '机构调研',
+        icon: 'icon-investigate',
+        navigateUrl: '/outline/investigate'
+    },
+    {
+        name: '机构评级',
+        icon: 'icon-grade',
+        navigateUrl: '/outline/concept'
+    },
+    {
         name: '决策',
         icon: 'icon-juece-color',
         navigateUrl: '/outline/concept'

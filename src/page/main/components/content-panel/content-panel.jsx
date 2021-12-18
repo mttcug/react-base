@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Carousel, Tabs } from 'antd'
 const { TabPane } = Tabs
 import { createFromIconfontCN } from '@ant-design/icons';
@@ -6,8 +7,9 @@ import config from '../../config.js'
 import './content-panel.less'
 
 export default () => {
+    const navigate = useNavigate()
     const IconFont = createFromIconfontCN({
-        scriptUrl: '//at.alicdn.com/t/font_3023759_za8gmmvcx98.js',
+        scriptUrl: '//at.alicdn.com/t/font_3023759_or2krsvbfpb.js',
     })
     return (
         <div className='content-container'>
@@ -18,7 +20,7 @@ export default () => {
                             <li 
                                 key={item.name}
                                 onClick={() => {
-                                    naviagte(item.naviagteUrl)
+                                    navigate(item.navigateUrl)
                                 }}>
                                 <IconFont type={item.icon} className='icon' />
                                 <span className='txt'>{ item.name }</span>

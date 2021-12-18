@@ -11,6 +11,7 @@ import Outline from './outline/outline.jsx'
 import Concept from './outline/concept/concept.jsx'
 import Stocks from './outline/stocks/stocks.jsx'
 import Detail from './outline/detail/detail.jsx'
+import Investigate from './outline/investigate/investigate.jsx'
 
 const App = () => {
     return (
@@ -19,9 +20,14 @@ const App = () => {
                 <Route path='/' element={ <Home /> } />
                 <Route path='/main' element={ <Main /> } />
                 <Route path='/outline' element={ <Outline /> }>
+                    {/* 概念/行业板块 */}
                     <Route path='concept' index element={ <Concept /> }></Route>
+                    {/* 成分股 */}
                     <Route path='stocks' element={ <Stocks /> }></Route>
+                    {/* 个股详情 */}
                     <Route path='detail' element={ <Detail /> }></Route>
+                    {/* 机构调研 */}
+                    <Route path='investigate' element={ <Investigate /> }></Route>
                 </Route>
                 <Route path='/about' element={ <About /> } />
             </Routes>
