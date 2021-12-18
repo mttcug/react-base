@@ -7,7 +7,15 @@ app = Flask(__name__)
 url = 'api'
 pro = ts.pro_api('79b02307d33ca733aeac643f8d1551a9794607ba8cc905f313815494')
 
+##############################################################################
+# 获取东方财富网-数据中心-特色数据-高管持股
+@app.route(f'/{url}/shareholdersChange', method=['GET'])
+def shareholdersChange():
+    predit = aks.stock_em_ggcg()
+    df = predit.to_json(orient='records', force_ascii=False)
+    return df
 
+##############################################################################
 # 东方财富网-数据中心-研究报告-盈利预测
 @app.route(f'/{url}/predictProfit', method=['GET'])
 def predictProfit():
