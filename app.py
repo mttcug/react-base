@@ -43,9 +43,10 @@ def predictProfit():
 @cross_origin()
 def getTHConcept():
     thc = aks.stock_board_concept_name_ths()
-    thc['板块名称'] = thc['概念名称']
-    thc['板块代码'] = thc['代码'].str.slice(38, 44, 1)
-    data = thc[['板块代码', '板块名称', '成分股数量']]
+    thc.name = thc['概念名称']
+    thc.code = thc['代码'].str.slice(38, 44, 1)
+    thc.count = thc['成分股数量']
+    data = thc[['code', 'name', 'count']]
     df = data.to_json(orient='records', force_ascii=False)
     return df
 
@@ -78,9 +79,7 @@ def getTHStocksByConceptCode():
 @cross_origin()
 def getTHIndustry():
     thi = aks.stock_board_industry_name_ths()
-    thi['板块名称'] = thi.name
-    thi['板块代码'] = thi.code
-    data = thi[['板块代码', '板块名称']]
+    data = thi[['code', 'name']]
     df = data.to_json(orient='records', force_ascii=False)
     return df
 
@@ -114,8 +113,11 @@ def getTHStocksByIndustryCode():
 @cross_origin()
 def getDCConcept():
     dci = aks.stock_board_concept_name_em()
+    dci.code = dci['板块代码']
+    dci.name = dci['板块名称']
     dci['成分股数量'] = dci['上涨家数'] + dci['下跌家数']
-    data = dci[['板块代码', '板块名称', '成分股数量']]
+    dci.count = dci['成分股数量']
+    data = dci[['code', 'name', 'count']]
     df = data.to_json(orient='records', force_ascii=False)
     return df
 
@@ -138,9 +140,11 @@ def getDCStocksByConceptName():
 @cross_origin()
 def getDCIndustry():
     thi = aks.stock_board_industry_name_em()
-    thi['板块名称'] = thi['概念名称']
-    thi['板块代码'] = thi['代码'].str.slice(38, 44, 1)
-    data = thi[['板块代码', '板块名称', '成分股数量']]
+    thi.name = thi['概念名称']
+    thi.code = thi['代码'].str.slice(38, 44, 1)
+    thi.count = thi['成分股数量']
+    data = thi[['code', 'name', 'count']]
+
     df = data.to_json(orient='records', force_ascii=False)
     return df
 
