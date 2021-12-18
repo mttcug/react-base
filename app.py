@@ -105,7 +105,6 @@ def getTHStocksByIndustryCode():
     stocks = aks.stock_board_cons_ths(symbol = symbol)
     stocks['code'] = stocks['代码']
     stocks['name'] = stocks['名称']
-    stocks['name'] = stocks['名称']
     stocks['flow_current'] = stocks['流通市值']
     stocks['price'] = stocks['现价']
     stocks['price_change'] = stocks['涨跌幅']
