@@ -8,7 +8,7 @@ url = 'api'
 pro = ts.pro_api('79b02307d33ca733aeac643f8d1551a9794607ba8cc905f313815494')
 
 #获取东方财富-行情中心-盘口异动数据
-@app.route(f'/{url}/unusualChange', method=['GET'])
+@app.route(f'/{url}/unusualChange', methods=['GET'])
 def unusualChange():
     symbol = equest.args.to_dict().get('symbol')
     predit = aks.stock_changes_em(symbol=symbol)
@@ -17,7 +17,7 @@ def unusualChange():
 
 ##############################################################################
 # 获取东方财富网-数据中心-特色数据-高管持股
-@app.route(f'/{url}/shareholdersChange', method=['GET'])
+@app.route(f'/{url}/shareholdersChange', methods=['GET'])
 def shareholdersChange():
     predit = aks.stock_em_ggcg()
     df = predit.to_json(orient='records', force_ascii=False)
@@ -25,7 +25,7 @@ def shareholdersChange():
 
 ##############################################################################
 # 东方财富网-数据中心-研究报告-盈利预测
-@app.route(f'/{url}/predictProfit', method=['GET'])
+@app.route(f'/{url}/predictProfit', methods=['GET'])
 def predictProfit():
     predit = aks.stock_profit_forecast()
     df = predit.to_json(orient='records', force_ascii=False)
@@ -80,8 +80,8 @@ def getTHIndustry():
 # 同花顺-板块-行业板块-成份股数据
 # Industry
 # Name
-@app.route(f'/{url}/getTHIndustry', methods=['GET'])
-def getTHIndustry():
+@app.route(f'/{url}/getTHIndustryByName', methods=['GET'])
+def getTHIndustryByName():
     symbol = equest.args.to_dict().get('symbol')
     stocks = aks.stock_board_industry_cons_ths(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
@@ -134,8 +134,8 @@ def getDCIndustry():
 # 东方财富-沪深板块-行业板块-板块成份
 # Industry
 # Name
-@app.route(f'/{url}/getDCStocksByConceptName', methods=['GET'])
-def getDCStocksByConceptName():
+@app.route(f'/{url}/getDCStocksByIndustryName', methods=['GET'])
+def getDCStocksByIndustryName():
     symbol = equest.args.to_dict().get('symbol')
     stocks = aks.stock_board_industry_cons_em(symbol = symbol)
     df = stocks.to_json(orient='records', force_ascii=False)
