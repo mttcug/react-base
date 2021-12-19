@@ -13,7 +13,6 @@ export default () => {
     useEffect(async () => {
         const url = '/api/organInvestigate'
         const result = await request.get(url, { date: '20211201' })
-        console.log('-----pppp:', result)
         const list = result.data || []
         setInvestigation(list)
     }, [])

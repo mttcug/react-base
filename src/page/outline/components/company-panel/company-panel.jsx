@@ -12,7 +12,7 @@ export default (props) => {
                 <span>{data.code}</span>
                 <span>{data.name}</span>
                 {/* 接待机构数量*/}
-                { data.institute_count && (<span>{data.institute_count}</span>) }
+                { data.institute_count && (<span className='red'>{data.institute_count}</span>) }
                 {/* 接待日期 */}
                 { data.receive_date && (<span>{data.receive_date}</span>) }
             </section>

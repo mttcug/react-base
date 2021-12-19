@@ -7,7 +7,7 @@ const headerConf = [
     {
         name: '个股',
         icon: 'icon-stock',
-        navigateUrl: '/outline/concept'
+        navigateUrl: '/outline/stocks'
     },
     {
         name: '指数',
@@ -50,7 +50,7 @@ const contentModuleFunc = [
     {
         name: '机构评级',
         icon: 'icon-grade',
-        navigateUrl: '/outline/concept'
+        navigateUrl: '/outline/institute-grade'
     },
     {
         name: '决策',
@@ -70,7 +70,7 @@ const contentModuleFunc = [
     {
         name: '更多',
         icon: 'icon-search-more',
-        navigateUrl: '/outline/concept'
+        navigateUrl: '/function'
     }
 ]
 

@@ -24,7 +24,7 @@ export default () => {
         <div className='concept-container'>
             <ul className='concept-list'> 
                 {
-                   categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/stocks', {state: item.code}) }/>) 
+                   categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/industry-stocks', {state: item.code}) }/>) 
                 }
             </ul>
         </div>
