@@ -8,6 +8,7 @@
         top: 0;
         width: 100%;
         justify-content: center;
+        box-shadow: 1px 1px 8px lightgrey;
         .title {
             margin-right: 20px;
             margin-bottom: 0px;
@@ -29,10 +30,28 @@
         margin-top: 60px;
         position: fixed;
         width: 100%;
-        top: 115px;
+        top: 118px;
         left: 0;
         right: 0;
         bottom: 0;
         overflow: scroll;
+    }
+    .loading {
+        width: 100%;
+        top: 45%;
+        position: absolute;
+        z-index: 999;
+        .ant-spin-dot {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        .ant-spin-dot-item {
+            background-color: #f57070;
+            width: 15px;
+            height: 15px;
+        }
+        .ant-spin-text {
+            color: #f57070;
+        }
     }
 }

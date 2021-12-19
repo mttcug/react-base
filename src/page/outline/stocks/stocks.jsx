@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import request from '../../../plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
-import { Card, Cascader } from 'antd';
+import { Cascader, Spin, Alert } from 'antd'
 import './stocks.less'
 
 export default () => {
 
     const [stocks, setStocks] = useState([])
+    const [pageNum, setPageNum] = useState(1)
     const [url, setUrl] = useState('/api/getAllStocks')
+    const [selectedKey, setSelectedKey] = useState('All')
     const [indicator, setIndicator] = useState('')
+    const [showLoading, setShowLoading] = useState(false)
     const [activeTabKey, setActiveTabKey] = useState('A')
     const location = useLocation()
     const navigate = useNavigate()
 
     useEffect(() => {
-        query()
+        query(['All'])
     }, [])
 
     const tabListTitle = [
@@ -91,6 +94,7 @@ export default () => {
         }
     ]
     const query = async (value) => {
+        setShowLoading(true)
         const [urlKey, indicator] = value
         const conf = {
             'All': '/api/getAllStocks',
@@ -98,21 +102,47 @@ export default () => {
             'SZ': '/api/getAllSZStocks',
             'BJ': '/api/getAllBJStocks'
         }
-        const url = conf[urlKey]
-        setUrl(url)
+        const _url = conf[urlKey]
+        setSelectedKey(urlKey)
         setIndicator(indicator)
-        let params = {}
+        let params = {
+            pageNum,
+            pageSize: 20
+        }
         if (indicator) {
             params.indicator = indicator
         }
         const result = await request.get(url, params)
-        const list = result.data || []
+        const list = [...stocks, ...result.data] || []
         setStocks(list)
+        setPageNum(pageNum+1)
+        setShowLoading(false)
     }
 
     const onChange = (value) => {
         query(value)
     }
+    const onTouchEnd = async () => {
+        const divEl = document.getElementById('scrollEl')
+        const scrollHeight = divEl.scrollHeight
+        const scrollTop = divEl.scrollTop + divEl.offsetHeight
+        if (scrollHeight <= scrollTop) {
+            await query([selectedKey, indicator])
+            // divEl.scrollTo(scrollTop)
+            console.log('----********:', scrollTop)
+            // divEl.scrollTo({
+            //     top: scrollTop,
+            //     left: 0,
+            //     behavior: 'smooth'
+            // })
+            // divEl.scrollIntoView({ behavior: 'smooth', block: 'end' })
+            // divEl.scrollTop = scrollTop
+            divEl.scrollIntoView()
+        }
+        console.log(divEl.offsetHeight, divEl.offsetTop, divEl.scrollHeight, divEl.scrollTop)
+    }
+    const onScroll = () => {}
+
     const Title = () => <div className='stocks-title'>
         <p className='title'>股票列表</p>
         <Cascader
@@ -126,11 +156,14 @@ export default () => {
     </div>
     const List = () => {
         return (
-            <ul className='stocks-list'> 
-                {
-                   stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
-                }
-            </ul>
+            <div>
+                { showLoading && <Spin className='loading' tip="加载中..."></Spin> }
+                <ul className='stocks-list' id='scrollEl' onTouchEnd={onTouchEnd} onScroll={onScroll}> 
+                    {
+                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
+                    }
+                </ul>
+            </div>
         )
     }
 
