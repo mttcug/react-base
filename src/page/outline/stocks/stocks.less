@@ -1,6 +1,38 @@
 .stocks-container {
-    .stocks-list {
+    .stocks-title {
         padding: 0px;
         margin: 0px;
+        display: flex;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        justify-content: center;
+        .title {
+            margin-right: 20px;
+            margin-bottom: 0px;
+            line-height: 40px;
+        }
+        .ant-select-selector {
+            height: 40px;
+            border-radius: 20px;
+            line-height: 40px;
+        }
+        .ant-select-selection-placeholder {
+            line-height: 40px;
+        }
+        .ant-select-selection-item {
+            line-height: 40px;
+        }
+    }
+    .stocks-list {
+        margin-top: 60px;
+        position: fixed;
+        width: 100%;
+        top: 115px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: scroll;
     }
 }
