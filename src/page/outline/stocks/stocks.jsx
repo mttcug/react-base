@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import request from '../../../plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
 import { Cascader, Spin, Alert } from 'antd'
+import ScrollEl from '../../../component/scroll/scroll.jsx'
 import './stocks.less'
 
 export default () => {
@@ -123,25 +124,8 @@ export default () => {
         query(value)
     }
     const onTouchEnd = async () => {
-        const divEl = document.getElementById('scrollEl')
-        const scrollHeight = divEl.scrollHeight
-        const scrollTop = divEl.scrollTop + divEl.offsetHeight
-        if (scrollHeight <= scrollTop) {
-            await query([selectedKey, indicator])
-            // divEl.scrollTo(scrollTop)
-            console.log('----********:', scrollTop)
-            // divEl.scrollTo({
-            //     top: scrollTop,
-            //     left: 0,
-            //     behavior: 'smooth'
-            // })
-            // divEl.scrollIntoView({ behavior: 'smooth', block: 'end' })
-            // divEl.scrollTop = scrollTop
-            divEl.scrollIntoView()
-        }
-        console.log(divEl.offsetHeight, divEl.offsetTop, divEl.scrollHeight, divEl.scrollTop)
+        query([selectedKey, indicator])
     }
-    const onScroll = () => {}
 
     const Title = () => <div className='stocks-title'>
         <p className='title'>股票列表</p>
@@ -154,23 +138,25 @@ export default () => {
             defaultValue={['All']}
         />
     </div>
-    const List = () => {
-        return (
-            <div>
-                { showLoading && <Spin className='loading' tip="加载中..."></Spin> }
-                <ul className='stocks-list' id='scrollEl' onTouchEnd={onTouchEnd} onScroll={onScroll}> 
-                    {
-                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
-                    }
-                </ul>
-            </div>
-        )
-    }
 
+    const styles = {
+        position: 'fixed',
+        width: '100%',
+        top: '118px',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        overflow: 'scroll'
+    }
     return (
         <div className='stocks-container'>
             <Title />
-            <List />
+            <ScrollEl style={styles} touchEnd={onTouchEnd}>
+                {
+                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
+                }
+            </ScrollEl>
+            { showLoading && <Spin className='loading' tip="加载中..."></Spin> }
         </div>
     )
 }
