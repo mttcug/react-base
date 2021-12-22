@@ -10,7 +10,7 @@ module.exports = merge(conf, {
             progress: true,
             reconnect: true
         },
-        historyApiFallback: true,
+        historyApiFallback: true,  // history 路由需要
         compress: false,
         port: 9000,
         hot: true
