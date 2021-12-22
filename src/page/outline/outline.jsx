@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { PageHeader } from 'antd';
 
 import './outline.less'
@@ -7,7 +7,8 @@ import { Layout } from 'antd';
 const { Content } = Layout
 
 export default () => {
-
+    const { type } = useLocation()
+    console.log('-----999999:', type)
     return (
         <Layout className="layout outline-layout">
             <PageHeader
