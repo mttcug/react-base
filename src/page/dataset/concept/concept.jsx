@@ -30,9 +30,10 @@ export default () => {
             <ScrollEl> 
                 {
                    categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => {
-                       navigate('/dataset/industry-stocks', {state: item.code}) 
+                       navigate('/dataset/industry-stocks', {state: item.code})
+                       state.title.unshift(item.name)
                        dispatch({value: {
-                           title: item.name,
+                           title: state.title,
                            searchKey: ''
                         }})
                    }}/>)

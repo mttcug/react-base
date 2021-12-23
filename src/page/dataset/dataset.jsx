@@ -9,7 +9,7 @@ const { Content } = Layout
 
 const datasetContext = createContext()
 const initialState = {
-    title: '',
+    title: [],   // 数组的目的为了让返回时依然显示上一级的标题[凯莱英，cro, 医药]
     searchKey: '',
     selfPick: {}
 }
@@ -45,7 +45,7 @@ export default () => {
     const location = useLocation()
     const title = location.state
     useEffect(() => {
-        dispatch({ type: 'setTitle', value: title || state.title })
+        dispatch({ type: 'setTitle', value: title ? [title] : state.title})
     }, [])
     const onInput = debounce((value) => dispatch({type: 'setSearchKey', value }), 500)
 
@@ -54,8 +54,12 @@ export default () => {
             <PageHeader
                 className='dataset-header'
                 ghost={false}
-                onBack={() => window.history.back()}
-                title={state.title}
+                onBack={() => {
+                    state.title.shift()
+                    dispatch({ type: 'setTitle', value: state.title})
+                    window.history.back()
+                }}
+                title={state.title[0]}
                 extra={[
                     <input key='1'
                         type='text'

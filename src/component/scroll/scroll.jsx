@@ -8,7 +8,7 @@ export default (props) => {
         const scrollHeight = divEl.scrollHeight
         const scrollTop = divEl.scrollTop + divEl.offsetHeight
         if (scrollHeight <= scrollTop) {
-            touchEnd()
+            touchEnd && touchEnd()
             // divEl.scrollTo(scrollTop)
             console.log('----********:', scrollTop)
             // divEl.scrollTo({
