@@ -28,7 +28,7 @@ export default () => {
                             <li 
                                 key={item.name}
                                 onClick={() => {
-                                    naviagte(item.navigateUrl)
+                                    naviagte(item.navigateUrl, {state: item.title})
                                 }}>
                                 <IconFont type={item.icon} className='icon' />
                                 <span className='txt'>{ item.name }</span>

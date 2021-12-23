@@ -6,18 +6,18 @@ import './outline.less'
 import { Layout } from 'antd';
 const { Content } = Layout
 
-export default () => {
-    const { type } = useLocation()
-    console.log('-----999999:', type)
+export default (props) => {
+    const location = useLocation()
+    const title = location.state
     return (
         <Layout className="layout outline-layout">
             <PageHeader
                 className='outline-header'
                 ghost={false}
                 onBack={() => window.history.back()}
-                title="Industry"
+                title={title}
                 extra={[
-                    <input key='1' type='text' className='outline-header-search' placeholder='请输入code或者name' />
+                    <input key='1' type='text' className='outline-header-search' placeholder='请输入代号或者名称' />
                 ]}
             />
             <Content>

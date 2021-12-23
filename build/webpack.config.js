@@ -13,16 +13,19 @@ module.exports = {
     entry: ['core-js', 'regenerator-runtime', path.resolve(__dirname, '../src/page/app.jsx')],
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        clean: true
     },
     resolve: {
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
-            '$component': '../src/component',
-            '$plugin': '../src/plugin',
-            '$interface': '../src/interface',
-            '$static': '../src/static'
-        },
-        extensions: ['.js', 'jsx', '.json']
+            '～': path.resolve(__dirname, '../src'),
+            '$component': path.resolve(__dirname, '../src/component'),
+            '$page': path.resolve(__dirname, '../src/page'),
+            '$plugin': path.resolve(__dirname, '../src/plugin'),
+            '$interface': path.resolve(__dirname, '../src/interface'),
+            '$static': path.resolve(__dirname, '../src/static')
+        }
     },
     module: {
         rules: [
@@ -66,16 +69,20 @@ module.exports = {
     },
     plugins: [
         new htmlwebpackplugin({     // html-webpack-plugin 插件对象
-            template: path.join(__dirname, '../src/index.html'), // 指定模板文件
+            template: path.join(__dirname, '../public/index.html'), // 指定模板文件
             filename: "index.html"  //设置内存中的文件名
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{ 
+                from: path.resolve(__dirname, '../public/favicon.ico'),
+                to: path.resolve(__dirname, '../dist'),
+                toType: 'dir'
+            }]
         }),
         new MiniCssExtractPlugin(),
         new webpack.DefinePlugin({
             'process.env.asset_path': asset_path
         }),
-        // new BundleAnalyzerPlugin()
-        // new CopyWebpackPlugin([{
-        //     from: path.resolve(__dirname, '../src/index.html')
-        // }])
+        // new BundleAnalyzerPlugin(),
     ],
 }
