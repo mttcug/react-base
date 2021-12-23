@@ -21,7 +21,7 @@ export default () => {
         <div className='concept-container'>
             <ul className='concept-list'> 
                 {
-                   investigation.map((item, index) => <CompanyPanel key={index} data={item} navigateTo={ () => navigate('/outline/stocks', {state: item.code}) }/>) 
+                   investigation.map((item, index) => <CompanyPanel key={index} data={item} navigateTo={ () => navigate('/dataset/stocks', {state: item.code}) }/>) 
                 }
             </ul>
         </div>

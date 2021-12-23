@@ -9,14 +9,14 @@ import Home from '$page/home/home'
 import Main from '$page/main/main'
 import About from '$page/about/About'
 import Function from '$page/function/function'
-import Outline from '$page/outline/outline'
+import Dataset from '$page/dataset/dataset'
 
-const Concept = asyncComponent(`page/outline/concept/concept`)
-const Stocks = asyncComponent(`page/outline/stocks/stocks`)
-const IndustryStocks = asyncComponent(`page/outline/industry-stocks/industry-stocks`)
-const Detail = asyncComponent(`page/outline/detail/detail`)
-const Investigate = asyncComponent(`page/outline/investigate/investigate`)
-const InstituteGrade = asyncComponent(`page/outline/institute-grade/institute-grade`)
+const Concept = asyncComponent(`page/dataset/concept/concept`)
+const Stocks = asyncComponent(`page/dataset/stocks/stocks`)
+const IndustryStocks = asyncComponent(`page/dataset/industry-stocks/industry-stocks`)
+const Detail = asyncComponent(`page/dataset/detail/detail`)
+const Investigate = asyncComponent(`page/dataset/investigate/investigate`)
+const InstituteGrade = asyncComponent(`page/dataset/institute-grade/institute-grade`)
 
 const loading = <div>加载中...</div>
 
@@ -27,7 +27,8 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={ <Home /> } />
                     <Route path='/main' element={ <Main /> } />
-                    <Route path='/outline' element={ <Outline /> }>
+                    <Route path='/dataset' element={ <Dataset /> }>
+                        <Route path='' index element={ <Concept /> }></Route>
                         {/* 概念/行业板块 */}
                         <Route path='concept' index element={ <Concept /> }></Route>
                         {/* 股票列表 */}

@@ -153,7 +153,7 @@ export default () => {
             <Title />
             <ScrollEl style={styles} touchEnd={onTouchEnd}>
                 {
-                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
+                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/dataset/detail', {state: item.code}) }/>) 
                 }
             </ScrollEl>
             { showLoading && <Spin className='loading' tip="加载中..."></Spin> }

@@ -24,7 +24,8 @@ module.exports = {
             '$page': path.resolve(__dirname, '../src/page'),
             '$plugin': path.resolve(__dirname, '../src/plugin'),
             '$interface': path.resolve(__dirname, '../src/interface'),
-            '$static': path.resolve(__dirname, '../src/static')
+            '$static': path.resolve(__dirname, '../src/static'),
+            '$utils': path.resolve(__dirname, '../src/utils')
         }
     },
     module: {

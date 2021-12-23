@@ -21,7 +21,7 @@ export default () => {
         <div className='stocks-container'>
             <ul className='stocks-list'> 
                 {
-                   stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/outline/detail', {state: item.code}) }/>) 
+                   stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/dataset/detail', {state: item.code}) }/>) 
                 }
             </ul>
         </div>

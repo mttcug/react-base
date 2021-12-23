@@ -2,25 +2,25 @@ const headerConf = [
     {
         name: '行业',
         icon: 'icon-industry',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '行业概念'
     },
     {
         name: '个股',
         icon: 'icon-stock',
-        navigateUrl: '/outline/stocks',
+        navigateUrl: '/dataset/stocks',
         title: '个股'
     },
     {
         name: '指数',
         icon: 'icon-zhishu',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '指数'
     },
     {
         name: '宏观',
         icon: 'icon-juece',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '宏观'
     }
 ]
@@ -29,55 +29,55 @@ const contentModuleFunc = [
     {
         name: '热门板块',
         icon: 'icon-hot',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '热门板块'
     },
     {
         name: '自选',
         icon: 'icon-stock-in',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '自选'
     },
     {
         name: '我的资产',
         icon: 'icon-pocket-color',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '我的资产'
     },
     {
         name: '盈利预测',
         icon: 'icon-profit-predict',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '盈利预测'
     },
     {
         name: '机构调研',
         icon: 'icon-investigate',
-        navigateUrl: '/outline/investigate',
+        navigateUrl: '/dataset/investigate',
         title: '机构调研'
     },
     {
         name: '机构评级',
         icon: 'icon-grade',
-        navigateUrl: '/outline/institute-grade',
+        navigateUrl: '/dataset/institute-grade',
         title: '机构评级'
     },
     {
         name: '决策',
         icon: 'icon-juece-color',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '决策'
     },
     {
         name: '数据中心',
         icon: 'icon-database',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '数据中心'
     },
     {
         name: '期货',
         icon: 'icon-qihuo',
-        navigateUrl: '/outline/concept',
+        navigateUrl: '/dataset/concept',
         title: '期货'
     },
     {
