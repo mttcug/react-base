@@ -9,7 +9,6 @@ export default () => {
     const { state, dispatch } = useContext(datasetContext)
     const [categories, setCategories] = useState([])
     const navigate = useNavigate()
-    console.log('VVVVVVVVVVVVVVV:', state)
     useEffect(async () => {
         const url = '/api/getTHIndustry'
         const params = {
@@ -28,7 +27,13 @@ export default () => {
         <div className='concept-container'>
             <ul className='concept-list'> 
                 {
-                   categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/dataset/industry-stocks', {state: item.code}) }/>) 
+                   categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => {
+                       navigate('/dataset/industry-stocks', {state: item.code}) 
+                       dispatch({value: {
+                           title: item.name,
+                           searchKey: ''
+                        }})
+                   }}/>)
                 }
             </ul>
         </div>
