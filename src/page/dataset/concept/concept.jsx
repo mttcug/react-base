@@ -29,7 +29,7 @@ export default () => {
         <div className='concept-container'>
             <ScrollEl> 
                 {
-                   categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => {
+                   categories.map((item, index) => <Panel key={index} data={item} operate={['1', '3']} navigateTo={ () => {
                        navigate('/dataset/industry-stocks', {state: item.code})
                        state.title.unshift(item.name)
                        dispatch({value: {

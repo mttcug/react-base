@@ -24,7 +24,7 @@ export default () => {
         <div className='stocks-container'>
             <ScrollEl> 
                 {
-                   stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => {
+                   stocks.map((item, index) => <Panel key={index} data={item} operate={['1', '2']} navigateTo={ () => {
                        navigate('/dataset/detail', {state: item.code}) 
                        state.title.unshift(item.name)
                        dispatch({value: {
