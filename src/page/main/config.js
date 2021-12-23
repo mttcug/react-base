@@ -35,13 +35,13 @@ const contentModuleFunc = [
     {
         name: '自选',
         icon: 'icon-stock-in',
-        navigateUrl: '/dataset/concept',
+        navigateUrl: '/mine/picked-stock',
         title: '自选'
     },
     {
         name: '我的资产',
         icon: 'icon-pocket-color',
-        navigateUrl: '/dataset/concept',
+        navigateUrl: '/mine/posession',
         title: '我的资产'
     },
     {

@@ -10,6 +10,7 @@ import Main from '$page/main/main'
 import About from '$page/about/About'
 import Function from '$page/function/function'
 import Dataset from '$page/dataset/dataset'
+import Mine from '$page/mine/mine'
 
 const Concept = asyncComponent(`page/dataset/concept/concept`)
 const Stocks = asyncComponent(`page/dataset/stocks/stocks`)
@@ -17,6 +18,10 @@ const IndustryStocks = asyncComponent(`page/dataset/industry-stocks/industry-sto
 const Detail = asyncComponent(`page/dataset/detail/detail`)
 const Investigate = asyncComponent(`page/dataset/investigate/investigate`)
 const InstituteGrade = asyncComponent(`page/dataset/institute-grade/institute-grade`)
+
+
+const PickedStock = asyncComponent(`page/mine/picked-stock/picked-stock`)
+const Posession = asyncComponent(`page/mine/posession/posession`)
 
 const loading = <div>加载中...</div>
 
@@ -41,6 +46,12 @@ const App = () => {
                         <Route path='investigate' element={ <Investigate /> }></Route>
                         {/* 机构评级 */}
                         <Route path='institute-grade' element={ <InstituteGrade /> }></Route>
+                    </Route>
+                    <Route path='/mine' element={ <Mine /> }>
+                        {/* 我的资产 */}
+                        <Route path='picked-stock' index element={ <PickedStock /> }></Route>
+                        {/* 我的自选 */}
+                        <Route path='posession' element={ <Posession /> }></Route>
                     </Route>
                     <Route path='/function' element={ <Function /> } />
                     <Route path='/about' element={ <About /> } />

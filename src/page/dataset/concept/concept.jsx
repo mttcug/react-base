@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import request from '$plugin/http'
 import Panel from '../components/panel/panel'
 import {datasetContext} from '$page/dataset/dataset'
+import ScrollEl from '$component/scroll/scroll.jsx'
+
 import './concept.less'
 
 export default () => {
@@ -25,7 +27,7 @@ export default () => {
 
     return (
         <div className='concept-container'>
-            <ul className='concept-list'> 
+            <ScrollEl> 
                 {
                    categories.map((item, index) => <Panel key={index} data={item} navigateTo={ () => {
                        navigate('/dataset/industry-stocks', {state: item.code}) 
@@ -35,7 +37,7 @@ export default () => {
                         }})
                    }}/>)
                 }
-            </ul>
+            </ScrollEl>
         </div>
     )
 }

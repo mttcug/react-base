@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
-import request from '../../../plugin/http/index.js'
+import request from '$plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
 import { Cascader, Spin, Alert } from 'antd'
-import ScrollEl from '../../../component/scroll/scroll.jsx'
+import ScrollEl from '$component/scroll/scroll.jsx'
 import './stocks.less'
 
 export default () => {

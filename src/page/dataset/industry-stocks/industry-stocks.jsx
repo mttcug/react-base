@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import request from '../../../plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
+import ScrollEl from '$component/scroll/scroll.jsx'
 import './industry-stocks.less'
 
 export default () => {
@@ -19,11 +20,11 @@ export default () => {
 
     return (
         <div className='stocks-container'>
-            <ul className='stocks-list'> 
+            <ScrollEl> 
                 {
                    stocks.map((item, index) => <Panel key={index} data={item} navigateTo={ () => navigate('/dataset/detail', {state: item.code}) }/>) 
                 }
-            </ul>
+            </ScrollEl>
         </div>
     )
 }
