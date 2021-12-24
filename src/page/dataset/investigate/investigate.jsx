@@ -4,6 +4,7 @@ import request from '../../../plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
 import './investigate.less'
 import { DatePicker, Select, Divider } from 'antd'
+
 const { Option } = Select
 
 const QuarterSelector = (props) => {

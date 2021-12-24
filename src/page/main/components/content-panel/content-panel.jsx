@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Carousel, Tabs, Progress, List, Anchor } from 'antd'
 
 const { TabPane } = Tabs
-import { createFromIconfontCN } from '@ant-design/icons';
+import { createFromIconfontCN } from '@ant-design/icons'
 import config from '../../config.js'
 import './content-panel.less'
 import request from '$plugin/http/index.js'
@@ -47,7 +47,6 @@ const Newslist =() => {
     }, [])
     const onScroll = () => {
         const scrollTop = document.getElementById('newsAnchor').scrollTop
-        console.log('------*****:', scrollTop)
     }
     return <Tabs defaultActiveKey="1" centered id='newsAnchor' onScroll={() => { onScroll() }}>
             {

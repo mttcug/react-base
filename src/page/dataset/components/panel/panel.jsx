@@ -40,6 +40,9 @@ const Operation = (props) => {
 
 export default (props) => {
     const { data, operate, navigateTo } = props
+    const IconFont = createFromIconfontCN({
+        scriptUrl: '//at.alicdn.com/t/font_3055349_mpp8qstu75n.js',
+    })
     return (
         <div className='panel-container'>
             <section className='panel-content' onClick={() => {
@@ -58,9 +61,19 @@ export default (props) => {
                 {/* 接待机构数量*/}
                 { (data.institute_count || data.institute_count === 0) && (<span className='red'>{data.institute_count}</span>) }
                 {/* 机构数变化 */}
-                { (data.institute_change || data.institute_change === 0) && (<span className={ data.institute_change > 0 ? 'red' : 'green' }>{data.institute_change}</span>) }
+                { (data.institute_change || data.institute_change === 0) && (
+                    <span className={ data.institute_change > 0 ? 'red' : 'green' }>
+                        {data.institute_change}
+                        <IconFont type={data.institute_change > 0 ? 'icon-up' : 'icon-down'} className='icon' />
+                    </span>
+                )}
                 {/* 持股比例增幅 */}
-                { data.hold_change && (<span className={ data.hold_change > 0 ? 'red' : 'green' }>{data.hold_change}</span>) }
+                { data.hold_change && (
+                    <span className={ data.hold_change > 0 ? 'red' : 'green' }>
+                        {data.hold_change}
+                        <IconFont type={data.hold_change > 0 ? 'icon-up' : 'icon-down'} className='icon' />
+                    </span>
+                )}
             </section>
             <Divider className='divider' />
             {
