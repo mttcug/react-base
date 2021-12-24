@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import request from '../../../plugin/http/index.js'
 import Panel from '../components/panel/panel.jsx'
 import './investigate.less'
-import { DatePicker, Select } from 'antd'
+import { DatePicker, Select, Divider } from 'antd'
 const { Option } = Select
 
 const QuarterSelector = (props) => {
@@ -37,9 +37,13 @@ const Title = () => {
     return (
         <ul className='investigate-list-title'>
             <li>股票代码</li>
+            <Divider type="vertical" className='title-divider' />
             <li>股票名称</li>
+            <Divider type="vertical" className='title-divider' />
             <li>机构数量</li>
+            <Divider type="vertical" className='title-divider' />
             <li>机构变化</li>
+            <Divider type="vertical" className='title-divider' />
             <li>持股增幅</li>
         </ul>
     )
