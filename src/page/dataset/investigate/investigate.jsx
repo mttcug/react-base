@@ -87,8 +87,8 @@ export default () => {
 
     const query = async (params) => {
         const url = '/api/instituteHold'
-        const result = await request.get(url, params)
-        const list = result.data || []
+        const {data} = await request.get(url, params)
+        const list = data || []
         setInvestigation(list)
     }
     return (

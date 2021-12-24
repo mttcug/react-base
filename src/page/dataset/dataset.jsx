@@ -31,7 +31,6 @@ const reducer = (state, action) => {
                 selfPick
             }
         default:
-            console.log('********default')
             return {
                 ...state,
                 ...action.value

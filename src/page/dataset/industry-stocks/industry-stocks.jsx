@@ -15,8 +15,8 @@ export default () => {
 
     useEffect(async () => {
         const url = '/api/getTHStocksByIndustryCode'
-        const result = await request.get(url, { symbol: location.state })
-        const list = result.data || []
+        const {data} = await request.get(url, { symbol: location.state }) || {}
+        const list = data || []
         setStocks(list)
     }, [])
 

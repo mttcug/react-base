@@ -16,8 +16,8 @@ export default () => {
         const params = {
             keyWord: state.searchKey
         }
-        const result = await request.get(url, params)
-        const list = result.data.map((item, index) => {
+        const {data} = await request.get(url, params) || {}
+        const list = data && data.map((item, index) => {
             item.index = index
             item.key = item.code
             return item

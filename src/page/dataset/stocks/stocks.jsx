@@ -36,14 +36,7 @@ export default () => {
           tab: '科创板',
         },
     ]
-    const contentListTitle = {
-        A: <p>article content</p>,
-        B: <p>app content</p>,
-        K: <p>project content</p>,
-      }
-    const onTabChange = (key) => {
-        setActiveTabKey(key)
-    }
+
     const options = [
         {
             value: 'All',
@@ -113,8 +106,8 @@ export default () => {
         if (indicator) {
             params.indicator = indicator
         }
-        const result = await request.get(url, params)
-        const list = [...stocks, ...result.data] || []
+        const {data} = await request.get(_url, params) || { data: [] }
+        const list = [...stocks, ...data] || []
         setStocks(list)
         setPageNum(pageNum+1)
         setShowLoading(false)

@@ -16,9 +16,9 @@ const ProgressBar = () => {
         scriptUrl: '//at.alicdn.com/t/font_3023759_y0127uqjeg.js',
     })
     useEffect(async () => {
-        const {data} = await request.get('/api/marketActivity') || []
-        const up = data.find(item => item.item === '上涨')
-        const down = data.find(item => item.item === '下跌')
+        const {data} = await request.get('/api/marketActivity') || {}
+        const up = data && data.find(item => item.item === '上涨')
+        const down = data && data.find(item => item.item === '下跌')
         setUpNum(up.value)
         setDownNum(down.value)
     }, [])
@@ -43,7 +43,7 @@ const Newslist =() => {
     const [list, setList] = useState([])
     useEffect(async () => {
         const { data } = await request.get('/api/getNews')
-        setList(data)
+        data && setList(data)
     }, [])
     const onScroll = () => {
         const scrollTop = document.getElementById('newsAnchor').scrollTop
