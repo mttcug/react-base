@@ -31,7 +31,7 @@
         padding: .2rem;
     }
     .ant-tabs-content-holder {
-        padding: 0 .4rem;
+        padding: 0 .3rem;
     }
     .ant-carousel {
         border-radius: .12rem;
@@ -47,16 +47,43 @@
     }
     .progress-container {
         padding: .2rem .3rem;
-        .progress-bar {}
         .progress-desc {
             display: flex;
             justify-content: space-between;
             .down {
                 color: #049f04;
+                margin-bottom: 0;
             }
             .up {
                 color: #fd4141;
+                margin-bottom: 0;
             }
+        }
+    }
+    .news-list-container {
+        display: flex;
+        margin: 0.1rem;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 0.12rem 0rem;
+        .news-content {
+            display: -webkit-box;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // -webkit-line-clamp: 2;
+            line-height: .5rem;
+            // height: 1rem;
+            width: 100%;
+            -webkit-box-orient: vertical;
+            color: #5a5959;
+            font-size: .25rem;
+        }
+        .news-index {
+            padding-right: 0.15rem;
+            color: red;
+            font-style: italic;
+            font-weight: 500;
         }
     }
 }

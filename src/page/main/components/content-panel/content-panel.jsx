@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Carousel, Tabs, Progress } from 'antd'
+import { Carousel, Tabs, Progress, List, Anchor } from 'antd'
+
 const { TabPane } = Tabs
 import { createFromIconfontCN } from '@ant-design/icons';
 import config from '../../config.js'
@@ -38,8 +39,37 @@ const ProgressBar = () => {
     )
 }
 
+const Newslist =() => {
+    const [list, setList] = useState([])
+    useEffect(async () => {
+        const { data } = await request.get('/api/getNews')
+        setList(data)
+    }, [])
+     
+    return <Tabs defaultActiveKey="1" centered>
+            {
+                config.contentTabConf.map((item) => 
+                    <TabPane
+                        tab={<span>{item.tab}</span>}
+                        key={item.key}
+                    >
+                        {
+                            list.map((info, index) => 
+                                <li className='news-list-container' key={index}>
+                                    <span className='news-index'>{index + 1}、</span>
+                                    <span className='news-content'>{info.news}</span>
+                                    {/* <span className='news-time'>{info.time}</span> */}
+                                </li>)
+                        }
+                    </TabPane>
+                )
+            }
+        </Tabs>
+}
+
 export default () => {
     const navigate = useNavigate()
+
     const IconFont = createFromIconfontCN({
         scriptUrl: '//at.alicdn.com/t/font_3023759_y0127uqjeg.js',
     })
@@ -62,7 +92,7 @@ export default () => {
                 </ul>
             </section>
             <ProgressBar />
-            <section className='carousel-container'>
+            {/* <section className='carousel-container'>
                 <Carousel dots={false} autoplay>
                     <div>
                         <h3 className='carousel-style'>1</h3>
@@ -77,19 +107,8 @@ export default () => {
                         <h3 className='carousel-style'>4</h3>
                     </div>
                 </Carousel>
-            </section>
-            <Tabs defaultActiveKey="1" centered>
-                {
-                    config.contentTabConf.map((item) => 
-                        <TabPane
-                            tab={<span>{item.tab}</span>}
-                            key={item.key}
-                        >
-                            {item.content}
-                        </TabPane>
-                    )
-                }
-            </Tabs>
+            </section> */}
+            <Newslist />
         </div>
     )
 }
