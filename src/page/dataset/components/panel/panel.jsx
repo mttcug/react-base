@@ -56,9 +56,11 @@ export default (props) => {
                 {/* 涨跌幅 */}
                 { data.price_change && (<span className={ data.price_change > 0 ? 'red' : 'green' }>{Math.abs(data.price_change) || 0}%</span>) }
                 {/* 接待机构数量*/}
-                { data.institute_count && (<span className='red'>{data.institute_count}家</span>) }
-                {/* 接待日期 */}
-                { data.receive_date && (<span>{data.receive_date}</span>) }
+                { (data.institute_count || data.institute_count === 0) && (<span className='red'>{data.institute_count}家</span>) }
+                {/* 机构数变化 */}
+                { (data.institute_change || data.institute_change === 0) && (<span className={ data.institute_change > 0 ? 'red' : 'green' }>{data.institute_change}</span>) }
+                {/* 持股比例增幅 */}
+                { data.hold_change && (<span className={ data.hold_change > 0 ? 'red' : 'green' }>{data.hold_change}</span>) }
             </section>
             <Divider className='divider' />
             {

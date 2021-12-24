@@ -25,17 +25,30 @@ const CountSelect = (props) => {
             onChange={(val) => { props.countChange(val) }}
         >
             <Option value='100'>{ '>100家' }</Option>
-            <Option value="50">{ '>50家' }</Option>
+            <Option value='50'>{ '>50家' }</Option>
             <Option value="20">{ '>20家' }</Option>
             <Option value="10">{ '>10家' }</Option>
+            <Option value="5">{ '>5家' }</Option>
       </Select>
+    )
+}
+
+const Title = () => {
+    return (
+        <ul className='investigate-list-title'>
+            <li>股票代码</li>
+            <li>股票名称</li>
+            <li>机构数量</li>
+            <li>机构变化</li>
+            <li>持股增幅</li>
+        </ul>
     )
 }
 
 export default () => {
 
     const [investigation, setInvestigation] = useState([])
-    const [count, setCount] = useState('20')
+    const [count, setCount] = useState('5')
     const [quarter, setQuarter] = useState('20213')
     const location = useLocation()
     const navigate = useNavigate()
@@ -71,14 +84,16 @@ export default () => {
         const url = '/api/instituteHold'
         const result = await request.get(url, params)
         const list = result.data || []
-        console.log('-llllllL', list)
         setInvestigation(list)
     }
     return (
         <div className='investigate-container'>
-            <section className='selector'>
-                <QuarterSelector quarterChange={ quarterChange } />
-                <CountSelect countChange={ countChange } />
+            <section className='selecor-container'>
+                <div className='selector'>
+                    <QuarterSelector quarterChange={ quarterChange } />
+                    <CountSelect countChange={ countChange } />
+                </div>
+                <Title />
             </section>
             <ul className='investigate-list'> 
                 {
