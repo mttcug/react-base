@@ -45,8 +45,11 @@ const Newslist =() => {
         const { data } = await request.get('/api/getNews')
         setList(data)
     }, [])
-     
-    return <Tabs defaultActiveKey="1" centered>
+    const onScroll = () => {
+        const scrollTop = document.getElementById('newsAnchor').scrollTop
+        console.log('------*****:', scrollTop)
+    }
+    return <Tabs defaultActiveKey="1" centered id='newsAnchor' onScroll={() => { onScroll() }}>
             {
                 config.contentTabConf.map((item) => 
                     <TabPane

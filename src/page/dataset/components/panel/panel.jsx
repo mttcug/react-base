@@ -55,6 +55,10 @@ export default (props) => {
                 { data.price && (<span>{data.price}元</span>) }
                 {/* 涨跌幅 */}
                 { data.price_change && (<span className={ data.price_change > 0 ? 'red' : 'green' }>{Math.abs(data.price_change) || 0}%</span>) }
+                {/* 接待机构数量*/}
+                { data.institute_count && (<span className='red'>{data.institute_count}家</span>) }
+                {/* 接待日期 */}
+                { data.receive_date && (<span>{data.receive_date}</span>) }
             </section>
             <Divider className='divider' />
             {

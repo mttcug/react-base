@@ -51,10 +51,10 @@ const contentModuleFunc = [
         title: '盈利预测'
     },
     {
-        name: '机构调研',
+        name: '机构持股',
         icon: 'icon-investigate',
         navigateUrl: '/dataset/investigate',
-        title: '机构调研'
+        title: '机构持股'
     },
     {
         name: '机构评级',
