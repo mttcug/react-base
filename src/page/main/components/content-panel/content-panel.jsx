@@ -17,10 +17,10 @@ const ProgressBar = () => {
     })
     useEffect(async () => {
         const {data} = await request.get('/api/marketActivity') || {}
-        const up = data && data.find(item => item.item === '上涨')
-        const down = data && data.find(item => item.item === '下跌')
-        setUpNum(up.value)
-        setDownNum(down.value)
+        const up = data && data.find(item => item.item === '上涨') || {}
+        const down = data && data.find(item => item.item === '下跌') || {}
+        setUpNum(up.value || 0)
+        setDownNum(down.value || 0)
     }, [])
     return (
         <section className='progress-container'>

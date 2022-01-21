@@ -12,7 +12,7 @@ module.exports = merge(conf, {
         },
         historyApiFallback: true,  // history 路由需要
         compress: false,
-        port: 9000,
+        port: 9009,
         hot: true
     }
 })
